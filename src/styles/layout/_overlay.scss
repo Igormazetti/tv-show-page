@@ -1,0 +1,85 @@
+.show-overlay {
+  @include absolute-cover;
+  z-index: $z-overlay;
+  overflow: hidden;
+
+  &__background {
+    @include absolute-cover;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    &::after {
+      content: '';
+      @include absolute-cover;
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.3) 0%,
+        rgba(0, 0, 0, 0.7) 50%,
+        rgba(0, 0, 0, 0.95) 100%
+      );
+    }
+  }
+
+  &__content {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100vh;
+    overflow-y: auto;
+    @include custom-scrollbar;
+    padding: $spacing-2xl $spacing-xl;
+
+    @include respond-to('md') {
+      padding: $spacing-2xl 4rem;
+    }
+
+    @include respond-to('lg') {
+      padding: $spacing-2xl 6rem;
+    }
+  }
+
+  &__close {
+    position: absolute;
+    top: $spacing-lg;
+    right: $spacing-lg;
+    width: 40px;
+    height: 40px;
+    @include flex-center;
+    color: $color-text-primary;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    transition: all $transition-base;
+    z-index: 10;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.8);
+      transform: scale(1.1);
+    }
+
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  &__loader {
+    @include flex-center;
+    height: 100vh;
+  }
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 4px solid rgba(255, 255, 255, 0.1);
+  border-top-color: $color-text-primary;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
