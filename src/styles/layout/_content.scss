@@ -1,18 +1,20 @@
 .show-container {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100%;
+  max-height: calc(100vh - 3rem);
+  overflow: hidden;
 }
 
 .show-main {
   display: grid;
   grid-template-columns: 1fr;
-  gap: $spacing-xl;
-  margin-bottom: $spacing-2xl;
+  gap: $spacing-lg;
+  flex-shrink: 0;
 
   @include respond-to('lg') {
     grid-template-columns: 2fr 1fr;
-    gap: $spacing-2xl;
+    gap: $spacing-xl;
   }
 }
 
@@ -24,13 +26,20 @@
 .show-main__right {
   display: flex;
   flex-direction: column;
+  max-height: 55vh;
+  overflow-y: auto;
+  @include custom-scrollbar;
 }
 
 .show-bottom {
   margin-top: auto;
-  padding-top: $spacing-2xl;
+  padding-top: $spacing-md;
+  flex-shrink: 0;
 }
 
 .content-area {
-  margin-top: $spacing-xl;
+  margin-top: $spacing-md;
+  max-height: 20vh;
+  overflow-y: auto;
+  @include custom-scrollbar;
 }
