@@ -43,4 +43,9 @@
 .content-area {
   margin-top: $spacing-md;
   overflow: hidden;
+  min-height: 200px;
+
+  @include respond-to('lg') {
+    min-height: 180px;
+  }
 }

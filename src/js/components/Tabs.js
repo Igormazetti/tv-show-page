@@ -6,7 +6,7 @@ export class Tabs {
     this.element = null;
     this.activeTab = 'general';
     this.tabs = [
-      { id: 'general', label: 'GENERAL' },
+      { id: 'general', label: 'GERAL' },
       { id: 'cast', label: 'ELENCO' },
       { id: 'awards', label: 'PRINCIPAIS PREMIOS' }
     ];
