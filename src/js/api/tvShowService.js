@@ -24,7 +24,7 @@ export class TVShowService {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const data = await response.json();
-      // Filter out null entries
+
       return data.filter(episode => episode !== null);
     } catch (error) {
       console.error('Error fetching episodes data:', error);

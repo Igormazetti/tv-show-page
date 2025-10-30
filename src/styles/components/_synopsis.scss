@@ -3,6 +3,11 @@
 
 .synopsis-section {
   padding: $spacing-sm 0;
+  max-width: 50%;
+
+  @include respond-to('lg') {
+    max-width: 35%;
+  }
 
   &__title {
     font-size: $font-size-sm;
@@ -19,7 +24,7 @@
     line-height: 1.5;
     margin-bottom: $spacing-md;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }

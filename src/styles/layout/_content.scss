@@ -29,9 +29,10 @@
 .show-main__right {
   display: flex;
   flex-direction: column;
-  max-height: 55vh;
+  max-height: 60vh;
   overflow-y: auto;
   @include custom-scrollbar;
+  scroll-behavior: smooth;
 }
 
 .show-bottom {

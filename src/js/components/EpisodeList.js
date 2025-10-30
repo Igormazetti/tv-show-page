@@ -120,6 +120,15 @@ export class EpisodeList {
       this.selectedEpisode = episode;
     }
     this.refreshEpisodes();
+
+    if (this.selectedEpisode) {
+      setTimeout(() => {
+        const detailElement = this.element.querySelector('.episode-detail-inline');
+        if (detailElement) {
+          detailElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      }, 100);
+    }
   }
 
   refreshEpisodes() {
