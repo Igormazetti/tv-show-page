@@ -2,7 +2,7 @@
 @use '../abstracts/mixins' as *;
 
 .synopsis-section {
-  padding: $spacing-lg 0;
+  padding: $spacing-sm 0;
 
   &__title {
     font-size: $font-size-sm;
@@ -10,14 +10,18 @@
     color: $color-text-primary;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin-bottom: $spacing-md;
+    margin-bottom: $spacing-sm;
   }
 
   &__text {
-    font-size: $font-size-base;
+    font-size: $font-size-sm;
     color: $color-text-secondary;
-    line-height: 1.6;
-    margin-bottom: $spacing-xl;
+    line-height: 1.5;
+    margin-bottom: $spacing-md;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   &__actions {

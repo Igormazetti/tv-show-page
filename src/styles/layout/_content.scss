@@ -42,7 +42,5 @@
 
 .content-area {
   margin-top: $spacing-md;
-  max-height: 20vh;
-  overflow-y: auto;
-  @include custom-scrollbar;
+  overflow: hidden;
 }
