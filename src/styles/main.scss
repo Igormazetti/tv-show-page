@@ -1,19 +1,15 @@
-// Abstracts
-@import 'abstracts/variables';
-@import 'abstracts/mixins';
+@use 'abstracts/variables' as *;
+@use 'abstracts/mixins' as *;
 
-// Base
-@import 'base/reset';
-@import 'base/typography';
+@use 'base/reset';
+@use 'base/typography';
 
-// Layout
-@import 'layout/overlay';
-@import 'layout/content';
+@use 'layout/overlay';
+@use 'layout/content';
 
-// Components
-@import 'components/header';
-@import 'components/tabs';
-@import 'components/synopsis';
-@import 'components/episode-list';
-@import 'components/cast-section';
-@import 'components/episode-detail';
+@use 'components/header';
+@use 'components/tabs';
+@use 'components/synopsis';
+@use 'components/episode-list';
+@use 'components/cast-section';
+@use 'components/episode-detail';

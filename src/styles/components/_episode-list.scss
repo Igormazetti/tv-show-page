@@ -1,3 +1,6 @@
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
 .episode-list {
   margin-top: $spacing-xl;
 
