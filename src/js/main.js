@@ -85,17 +85,17 @@ class App {
           <h3 class="synopsis-section__title">SINOPSE</h3>
           <p class="synopsis-section__text">${this.data.show.Synopsis}</p>
           <div class="synopsis-section__actions">
-            <button class="action-icon" aria-label="Me gusta" title="Me gusta">
+            <button class="action-icon" aria-label="Adicionar à minha lista" title="Adicionar">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" stroke="currentColor" stroke-width="2" fill="none"/>
+                <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
               </svg>
-              <span>My List</span>
+              <span>Minha Lista</span>
             </button>
             <button class="action-icon" aria-label="Guardar para después" title="Guardar">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z" stroke="currentColor" stroke-width="2" fill="none"/>
               </svg>
-              <span>Guardar</span>
+              <span>Salvar</span>
             </button>
             <button class="action-icon" aria-label="Compartir" title="Compartir">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
