@@ -52,7 +52,7 @@ export class EpisodeList {
 
     const episodes = this.episodesBySeason[this.currentSeason] || [];
 
-    episodes.forEach((episode, index) => {
+    episodes.forEach((episode) => {
       const isSelected = this.selectedEpisode && this.selectedEpisode.ID === episode.ID;
 
       const item = createElement('div', {
@@ -94,7 +94,7 @@ export class EpisodeList {
 
     detail.innerHTML = `
       <div class="episode-detail-inline__image">
-        ${episode.Image ? `<img src="${episode.Image}" alt="${episode.Title}">` : ''}
+        ${episode.Image ? `<img src="${episode.Image}" alt="${episode.Title}" loading="eager" decoding="sync">` : ''}
       </div>
       <div class="episode-detail-inline__content">
         ${episode.Synopsis ? `<p class="episode-detail-inline__synopsis">${episode.Synopsis}</p>` : '<p class="episode-detail-inline__synopsis">No hay sinopsis disponible.</p>'}
