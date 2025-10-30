@@ -1,0 +1,93 @@
+.episode-detail {
+  margin-top: $spacing-lg;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: $border-radius-lg;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all $transition-base;
+
+  &--visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &__image {
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.05);
+
+    @include respond-to('md') {
+      height: 400px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  &__content {
+    padding: $spacing-xl;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: $spacing-md;
+    margin-bottom: $spacing-md;
+  }
+
+  &__title {
+    flex: 1;
+    font-size: $font-size-xl;
+    font-weight: $font-weight-bold;
+    color: $color-text-primary;
+    margin: 0;
+  }
+
+  &__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    color: $color-text-primary;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    transition: all $transition-base;
+    flex-shrink: 0;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1.1);
+    }
+
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+
+  &__synopsis {
+    font-size: $font-size-base;
+    color: $color-text-secondary;
+    line-height: 1.6;
+    margin-bottom: $spacing-lg;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    font-size: $font-size-sm;
+    color: $color-text-muted;
+  }
+
+  &__separator {
+    margin: 0 $spacing-xs;
+  }
+}

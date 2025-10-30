@@ -1,0 +1,36 @@
+.show-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.show-main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-xl;
+  margin-bottom: $spacing-2xl;
+
+  @include respond-to('lg') {
+    grid-template-columns: 1fr 1fr;
+    gap: $spacing-2xl;
+  }
+}
+
+.show-main__left {
+  display: flex;
+  flex-direction: column;
+}
+
+.show-main__right {
+  display: flex;
+  flex-direction: column;
+}
+
+.show-bottom {
+  margin-top: auto;
+  padding-top: $spacing-2xl;
+}
+
+.content-area {
+  margin-top: $spacing-xl;
+}

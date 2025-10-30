@@ -8,10 +8,12 @@
 
 // Layout
 @import 'layout/overlay';
+@import 'layout/content';
 
 // Components
 @import 'components/header';
 @import 'components/tabs';
+@import 'components/synopsis';
 @import 'components/episode-list';
 @import 'components/cast-section';
 @import 'components/episode-detail';
