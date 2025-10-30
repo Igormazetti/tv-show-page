@@ -2,14 +2,12 @@ import { TVShowService } from './api/tvShowService.js';
 import { Header } from './components/Header.js';
 import { Tabs } from './components/Tabs.js';
 import { EpisodeList } from './components/EpisodeList.js';
-import { EpisodeDetail } from './components/EpisodeDetail.js';
 import { CastSection } from './components/CastSection.js';
 
 class App {
   constructor() {
     this.data = null;
     this.currentTab = 'general';
-    this.selectedEpisode = null;
     this.contentArea = null;
     this.init();
   }
@@ -47,7 +45,7 @@ class App {
 
     const rightColumn = document.createElement('div');
     rightColumn.className = 'show-main__right';
-    const episodeList = new EpisodeList(this.data.episodes, (episode) => this.handleEpisodeClick(episode));
+    const episodeList = new EpisodeList(this.data.episodes);
     rightColumn.appendChild(episodeList.render());
 
     mainSection.appendChild(leftColumn);
@@ -116,11 +114,6 @@ class App {
       `;
 
       this.contentArea.appendChild(generalContent);
-
-      if (this.selectedEpisode) {
-        const episodeDetail = new EpisodeDetail(this.selectedEpisode, () => this.handleEpisodeDetailClose());
-        this.contentArea.appendChild(episodeDetail.render());
-      }
     } else if (this.currentTab === 'cast') {
       const castSection = new CastSection(this.data.show.Cast);
       this.contentArea.appendChild(castSection.render());
@@ -131,17 +124,6 @@ class App {
 
   handleTabChange(tabId) {
     this.currentTab = tabId;
-    this.selectedEpisode = null;
-    this.renderContent();
-  }
-
-  handleEpisodeClick(episode) {
-    this.selectedEpisode = episode;
-    this.renderContent();
-  }
-
-  handleEpisodeDetailClose() {
-    this.selectedEpisode = null;
     this.renderContent();
   }
 

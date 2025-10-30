@@ -1,11 +1,11 @@
-import { createElement, groupEpisodesBySeason } from '../utils/helpers.js';
+import { createElement, groupEpisodesBySeason, formatDuration } from '../utils/helpers.js';
 
 export class EpisodeList {
-  constructor(episodes, onEpisodeClick) {
+  constructor(episodes) {
     this.allEpisodes = episodes;
     this.episodesBySeason = groupEpisodesBySeason(episodes);
-    this.onEpisodeClick = onEpisodeClick;
     this.currentSeason = 1;
+    this.selectedEpisode = null;
     this.element = null;
     this.seasons = Object.keys(this.episodesBySeason).map(Number).sort((a, b) => a - b);
   }
@@ -52,9 +52,11 @@ export class EpisodeList {
 
     const episodes = this.episodesBySeason[this.currentSeason] || [];
 
-    episodes.forEach(episode => {
+    episodes.forEach((episode, index) => {
+      const isSelected = this.selectedEpisode && this.selectedEpisode.ID === episode.ID;
+
       const item = createElement('div', {
-        classes: 'episode-item'
+        classes: ['episode-item', isSelected ? 'episode-item--active' : '']
       });
 
       item.innerHTML = `
@@ -71,21 +73,66 @@ export class EpisodeList {
       `;
 
       item.addEventListener('click', () => {
-        if (this.onEpisodeClick) {
-          this.onEpisodeClick(episode);
-        }
+        this.handleEpisodeClick(episode);
       });
 
       container.appendChild(item);
+
+      if (isSelected) {
+        const detail = this.renderEpisodeDetail(episode);
+        container.appendChild(detail);
+      }
     });
 
     return container;
+  }
+
+  renderEpisodeDetail(episode) {
+    const detail = createElement('div', {
+      classes: 'episode-detail-inline'
+    });
+
+    detail.innerHTML = `
+      <div class="episode-detail-inline__image">
+        ${episode.Image ? `<img src="${episode.Image}" alt="${episode.Title}">` : ''}
+      </div>
+      <div class="episode-detail-inline__content">
+        ${episode.Synopsis ? `<p class="episode-detail-inline__synopsis">${episode.Synopsis}</p>` : '<p class="episode-detail-inline__synopsis">No hay sinopsis disponible.</p>'}
+        <div class="episode-detail-inline__meta">
+          <span>${formatDuration(episode.Duration)}</span>
+          <span class="episode-detail-inline__separator">•</span>
+          <span>Temporada ${episode.SeasonNumber}</span>
+        </div>
+      </div>
+    `;
+
+    setTimeout(() => {
+      detail.classList.add('episode-detail-inline--visible');
+    }, 10);
+
+    return detail;
+  }
+
+  handleEpisodeClick(episode) {
+    if (this.selectedEpisode && this.selectedEpisode.ID === episode.ID) {
+      this.selectedEpisode = null;
+    } else {
+      this.selectedEpisode = episode;
+    }
+    this.refreshEpisodes();
+  }
+
+  refreshEpisodes() {
+    const episodesContainer = this.element.querySelector('.episode-list__episodes');
+    const newEpisodesContainer = this.renderEpisodes();
+    episodesContainer.replaceWith(newEpisodesContainer);
   }
 
   switchSeason(season) {
     if (this.currentSeason === season) return;
 
     this.currentSeason = season;
+    this.selectedEpisode = null;
 
     const buttons = this.element.querySelectorAll('.season-selector__button');
     buttons.forEach(btn => {
@@ -96,8 +143,6 @@ export class EpisodeList {
       }
     });
 
-    const episodesContainer = this.element.querySelector('.episode-list__episodes');
-    const newEpisodesContainer = this.renderEpisodes();
-    episodesContainer.replaceWith(newEpisodesContainer);
+    this.refreshEpisodes();
   }
 }
