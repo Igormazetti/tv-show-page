@@ -34,6 +34,12 @@ export class Tabs {
       tabsNav.appendChild(button);
     });
 
+    const logo = document.createElement('img');
+    logo.className = 'tabs__logo';
+    logo.src = new URL('../../assets/telecine.png', import.meta.url).href;
+    logo.alt = 'Telecine';
+    tabsNav.appendChild(logo);
+
     this.element.appendChild(tabsNav);
 
     return this.element;

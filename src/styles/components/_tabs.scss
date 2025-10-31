@@ -2,19 +2,28 @@
 @use '../abstracts/mixins' as *;
 
 .tabs {
-  margin: $spacing-2xl 0;
+  margin: 0;
+  padding-top: $spacing-xl;
 
   &__nav {
     display: flex;
     gap: $spacing-xl;
     border-bottom: 2px solid $color-border;
+    padding-top: 20px;
     padding-bottom: $spacing-md;
+    align-items: center;
+  }
+
+  &__logo {
+    margin-left: auto;
+    height: 40px;
+    width: auto;
   }
 
   &__button {
     position: relative;
     padding: $spacing-sm $spacing-md;
-    font-size: $font-size-sm;
+    font-size: 20px;
     font-weight: $font-weight-semibold;
     color: $color-text-secondary;
     text-transform: uppercase;

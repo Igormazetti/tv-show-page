@@ -2,12 +2,10 @@
 @use '../abstracts/mixins' as *;
 
 .episode-list {
-  margin-top: $spacing-xl;
-
   &__episodes {
     display: flex;
     flex-direction: column;
-    gap: $spacing-sm;
+    gap: 0;
   }
 }
 
@@ -16,12 +14,12 @@
   gap: $spacing-xl;
   border-bottom: 2px solid $color-border;
   padding-bottom: $spacing-sm;
-  margin-bottom: $spacing-lg;
+  margin-bottom: 0;
 
   &__button {
     position: relative;
     padding: $spacing-xs $spacing-sm;
-    font-size: $font-size-sm;
+    font-size: $font-size-base;
     font-weight: $font-weight-semibold;
     color: $color-text-secondary;
     background: transparent;
@@ -59,15 +57,18 @@
   display: flex;
   align-items: center;
   gap: $spacing-md;
-  padding: $spacing-md;
-  background: $color-card-bg;
-  border-radius: $border-radius-md;
+  padding: $spacing-xs 0;
+  background: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   cursor: pointer;
   transition: all $transition-base;
 
+  &:first-child {
+    border-top: none;
+  }
+
   &:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: translateX(4px);
+    background: transparent;
 
     .episode-item__play {
       opacity: 1;
@@ -75,16 +76,17 @@
   }
 
   &--active {
-    background: rgba(255, 255, 255, 0.1);
+    background: transparent;
+    border-bottom: none;
+    padding-bottom: 0;
   }
 
   &__number {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 32px;
-    height: 32px;
-    font-size: $font-size-sm;
+    min-width: 40px;
+    font-size: $font-size-base;
     font-weight: $font-weight-bold;
     color: $color-text-secondary;
   }
@@ -95,7 +97,7 @@
 
   &__title {
     font-size: $font-size-base;
-    font-weight: $font-weight-semibold;
+    font-weight: $font-weight-regular;
     color: $color-text-primary;
     margin: 0;
   }
@@ -104,10 +106,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 48px;
+    height: 48px;
     color: $color-text-primary;
-    opacity: 0.6;
+    opacity: 0.5;
     transition: all $transition-base;
 
     &:hover {
@@ -116,8 +118,8 @@
     }
 
     svg {
-      width: 24px;
-      height: 24px;
+      width: 40px;
+      height: 40px;
     }
   }
 }
@@ -125,25 +127,27 @@
 .episode-detail-inline {
   display: flex;
   flex-direction: column;
-  gap: $spacing-md;
-  padding: $spacing-md;
-  background: rgba(0, 0, 0, 0.4);
-  border-radius: $border-radius-md;
-  margin-top: $spacing-sm;
-  margin-bottom: $spacing-sm;
+  gap: $spacing-sm;
+  padding: $spacing-xs 0 $spacing-md 0;
+  background: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  margin-top: 0;
+  margin-bottom: 0;
   opacity: 0;
-  transform: translateY(-10px);
+  max-height: 0;
+  overflow: hidden;
   transition: all $transition-base;
 
   &--visible {
     opacity: 1;
-    transform: translateY(0);
+    max-height: 600px;
   }
 
   &__image {
-    width: 100%;
+    position: relative;
+    width: 90%;
     max-width: 430px;
-    height: 280px;
+    height: 230px;
     border-radius: $border-radius-sm;
     overflow: hidden;
     background: rgba(255, 255, 255, 0.05);
@@ -163,10 +167,10 @@
     display: flex;
     flex-direction: column;
     gap: $spacing-sm;
-    max-width: 430px;
   }
 
   &__synopsis {
+    width: 90%;
     font-size: $font-size-sm;
     color: $color-text-secondary;
     line-height: 1.6;
@@ -183,5 +187,24 @@
 
   &__separator {
     margin: 0 $spacing-xs;
+  }
+}
+
+.episode-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.3);
+
+  &__bar {
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      $color-accent 0%,
+      rgba(255, 255, 255, 0.6) 100%
+    );
+    transition: width $transition-base;
   }
 }

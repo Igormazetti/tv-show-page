@@ -25,6 +25,8 @@ export class Header {
           <span class="show-header__separator">/</span>
           <span class="show-header__year">${this.showData.Year}</span>
           <span class="show-header__separator">/</span>
+          <span>EUA</span>
+          <span class="show-header__separator">/</span>
           <span class="show-header__age-rating">${ageRating}</span>
         </div>
       </div>

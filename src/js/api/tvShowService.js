@@ -10,6 +10,7 @@ export class TVShowService {
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
+
       return await response.json();
     } catch (error) {
       console.error('Error fetching show data:', error);
@@ -25,6 +26,8 @@ export class TVShowService {
       }
       const data = await response.json();
 
+      console.log(data, 'episodes')
+
       return data.filter(episode => episode !== null);
     } catch (error) {
       console.error('Error fetching episodes data:', error);
@@ -38,6 +41,7 @@ export class TVShowService {
         show: this.fetchShowData(),
         episodes: this.fetchEpisodesData()
       });
+      console.log(results)
       return results;
     } catch (error) {
       console.error('Error fetching all data:', error);

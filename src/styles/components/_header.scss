@@ -32,33 +32,13 @@
     }
   }
 
-  &__rating {
-    font-weight: $font-weight-bold;
-    color: $color-text-primary;
-  }
-
   &__separator {
     color: $color-text-muted;
   }
 
   &__genre {
     text-transform: uppercase;
-    font-size: $font-size-xs;
     letter-spacing: 0.05em;
-  }
-
-  &__age-rating {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 24px;
-    height: 24px;
-    padding: 0 $spacing-xs;
-    background: $color-text-muted;
-    color: $color-background;
-    font-weight: $font-weight-bold;
-    font-size: $font-size-xs;
-    border-radius: $border-radius-sm;
   }
 
   &__actions {

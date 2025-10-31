@@ -2,11 +2,21 @@
 @use '../abstracts/mixins' as *;
 
 .show-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   height: 100%;
-  max-height: calc(100vh - 3rem);
+  max-height: 100vh;
   overflow: hidden;
+  padding: $spacing-lg 3rem 0 0;
+
+  @include respond-to('md') {
+    padding: $spacing-xl 3rem 0 0;
+  }
+
+  @include respond-to('lg') {
+    padding: $spacing-xl 4rem 0 0;
+  }
 }
 
 .show-main {
@@ -14,39 +24,67 @@
   grid-template-columns: 1fr;
   gap: $spacing-lg;
   flex-shrink: 0;
+  overflow: hidden;
+  padding-left: 3rem;
+
+  @include respond-to('md') {
+    padding-left: 3rem;
+  }
 
   @include respond-to('lg') {
     grid-template-columns: 2fr 1fr;
     gap: $spacing-xl;
+    height: 65vh;
+    padding-left: 4rem;
   }
 }
 
 .show-main__left {
   display: flex;
   flex-direction: column;
+  flex-shrink: 0;
 }
 
 .show-main__right {
   display: flex;
   flex-direction: column;
-  max-height: 60vh;
+  height: 100%;
   overflow-y: auto;
+  overflow-x: hidden;
+  margin-top: 6rem;
+  padding-bottom: 6rem;
   @include custom-scrollbar;
   scroll-behavior: smooth;
 }
 
 .show-bottom {
-  margin-top: auto;
-  padding-top: $spacing-md;
-  flex-shrink: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    to right,
+    #1a1a1a 0%,
+    #0f0f0f 50%,
+    #000000 100%
+  );
+  padding: 0 3rem $spacing-lg;
+
+  @include respond-to('md') {
+    padding: 0 3rem $spacing-lg;
+  }
+
+  @include respond-to('lg') {
+    padding: 0 4rem $spacing-lg;
+  }
 }
 
 .content-area {
-  margin-top: $spacing-md;
+  margin-top: $spacing-sm;
   overflow: hidden;
-  min-height: 200px;
+  height: 120px;
 
   @include respond-to('lg') {
-    min-height: 180px;
+    height: 110px;
   }
 }

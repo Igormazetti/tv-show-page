@@ -24,6 +24,17 @@ export class EpisodeList {
     return this.element;
   }
 
+  renderEpisodesOnly() {
+    this.element = createElement('div', {
+      classes: 'episode-list'
+    });
+
+    const episodesContainer = this.renderEpisodes();
+    this.element.appendChild(episodesContainer);
+
+    return this.element;
+  }
+
   renderSeasonSelector() {
     const selector = createElement('div', {
       classes: 'season-selector'
@@ -92,12 +103,19 @@ export class EpisodeList {
       classes: 'episode-detail-inline'
     });
 
+    const progress = Math.floor(Math.random() * 100);
+
     detail.innerHTML = `
       <div class="episode-detail-inline__image">
-        ${episode.Image ? `<img src="${episode.Image}" alt="${episode.Title}" loading="eager" decoding="sync">` : ''}
+        ${episode.Image ? `
+          <img src="${episode.Image}" alt="${episode.Title}" loading="eager" decoding="sync">
+          <div class="episode-progress">
+            <div class="episode-progress__bar" style="width: ${progress}%"></div>
+          </div>
+        ` : ''}
       </div>
       <div class="episode-detail-inline__content">
-        ${episode.Synopsis ? `<p class="episode-detail-inline__synopsis">${episode.Synopsis}</p>` : '<p class="episode-detail-inline__synopsis">No hay sinopsis disponible.</p>'}
+        ${episode.Synopsis ? `<p class="episode-detail-inline__synopsis">${episode.Synopsis}</p>` : '<p class="episode-detail-inline__synopsis">Não há sinopse disponível.</p>'}
         <div class="episode-detail-inline__meta">
           <span>${formatDuration(episode.Duration)}</span>
           <span class="episode-detail-inline__separator">•</span>
@@ -124,10 +142,17 @@ export class EpisodeList {
     if (this.selectedEpisode) {
       setTimeout(() => {
         const detailElement = this.element.querySelector('.episode-detail-inline');
-        if (detailElement) {
-          detailElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        const scrollContainer = this.element.closest('.show-main__right');
+
+        if (detailElement && scrollContainer) {
+          const detailBottom = detailElement.getBoundingClientRect().bottom;
+          const containerBottom = scrollContainer.getBoundingClientRect().bottom;
+
+          if (detailBottom > containerBottom) {
+            detailElement.scrollIntoView({ behavior: 'smooth', block: 'end' });
+          }
         }
-      }, 100);
+      }, 150);
     }
   }
 
