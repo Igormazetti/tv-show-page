@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/tv-show-details/',
+  base: '/tv-show-page/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets'
