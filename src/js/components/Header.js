@@ -14,6 +14,7 @@ export class Header {
     const genres = this.showData.Genres.map(g => g.Title).join(' / ');
     const rating = '80% INDICADO';
     const ageRating = '14';
+    const country = 'EUA';
 
     this.element.innerHTML = `
       <div class="show-header__main">
@@ -25,7 +26,7 @@ export class Header {
           <span class="show-header__separator">/</span>
           <span class="show-header__year">${this.showData.Year}</span>
           <span class="show-header__separator">/</span>
-          <span>EUA</span>
+          <span>${country}</span>
           <span class="show-header__separator">/</span>
           <span class="show-header__age-rating">${ageRating}</span>
         </div>

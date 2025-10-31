@@ -169,6 +169,7 @@ export class EpisodeList {
     this.selectedEpisode = null;
 
     const buttons = this.element.querySelectorAll('.season-selector__button');
+    
     buttons.forEach(btn => {
       if (Number(btn.dataset.season) === season) {
         btn.classList.add('season-selector__button--active');

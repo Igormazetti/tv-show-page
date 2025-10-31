@@ -62,7 +62,7 @@ class App {
     this.contentArea.className = 'content-area';
     bottomSection.appendChild(this.contentArea);
 
-    this.renderContent();
+    this.renderTabsContent();
 
     container.appendChild(bottomSection);
 
@@ -73,7 +73,7 @@ class App {
     closeButton.addEventListener('click', () => this.handleClose());
   }
 
-  renderContent() {
+  renderTabsContent() {
     this.contentArea.innerHTML = '';
 
     if (this.currentTab === 'general') {
@@ -125,7 +125,7 @@ class App {
 
   handleTabChange(tabId) {
     this.currentTab = tabId;
-    this.renderContent();
+    this.renderTabsContent();
   }
 
   handleClose() {
