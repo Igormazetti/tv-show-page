@@ -30,6 +30,11 @@
     letter-spacing: 0.05em;
     transition: color $transition-base;
 
+    @include mobile-only {
+      font-size: $font-size-sm;
+      padding: $spacing-xs $spacing-sm;
+    }
+
     &::after {
       content: '';
       position: absolute;

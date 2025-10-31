@@ -6,6 +6,10 @@
   flex-direction: column;
   gap: $spacing-lg;
 
+  @include mobile-only {
+    gap: 2px;
+  }
+
   @include respond-to('lg') {
     flex-direction: row;
     gap: $spacing-xl;
@@ -19,6 +23,13 @@
   justify-content: center;
   padding: $spacing-md;
 
+  @include mobile-only {
+    gap: 2px;
+    padding: $spacing-xs;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+  }
+
   @include respond-to('lg') {
     flex-direction: row;
     justify-content: flex-start;
@@ -31,6 +42,10 @@
   padding: $spacing-md;
   flex: 1;
 
+  @include mobile-only {
+    padding: $spacing-xs;
+  }
+
   &__title {
     font-size: $font-size-base;
     font-weight: $font-weight-bold;
@@ -38,12 +53,26 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin-bottom: $spacing-md;
+
+    @include mobile-only {
+      font-size: $font-size-sm;
+      margin-bottom: 4px;
+    }
   }
 
   &__text {
     font-size: $font-size-base;
     color: $color-text-secondary;
     line-height: 1.5;
+
+    @include mobile-only {
+      font-size: $font-size-xs;
+      line-height: 1.4;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
 
     @include respond-to('lg') {
       display: -webkit-box;
@@ -66,6 +95,11 @@
   background: transparent;
   border: none;
 
+  @include mobile-only {
+    padding: $spacing-xs;
+    gap: 2px;
+  }
+
   &:hover {
     color: $color-text-primary;
     transform: translateY(-2px);
@@ -75,6 +109,11 @@
     width: 32px;
     height: 32px;
     flex-shrink: 0;
+
+    @include mobile-only {
+      width: 24px;
+      height: 24px;
+    }
 
     @include respond-to('lg') {
       width: 40px;
@@ -87,5 +126,9 @@
     font-weight: $font-weight-regular;
     text-align: center;
     white-space: nowrap;
+
+    @include mobile-only {
+      font-size: 10px;
+    }
   }
 }

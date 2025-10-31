@@ -141,15 +141,28 @@ export class EpisodeList {
 
     if (this.selectedEpisode) {
       setTimeout(() => {
-        const detailElement = this.element.querySelector('.episode-detail-inline');
+        const episodeItem = Array.from(this.element.querySelectorAll('.episode-item'))
+          .find(item => item.querySelector('.episode-item__title')?.textContent === episode.Title);
         const scrollContainer = this.element.closest('.show-main__right');
 
-        if (detailElement && scrollContainer) {
-          const detailBottom = detailElement.getBoundingClientRect().bottom;
-          const containerBottom = scrollContainer.getBoundingClientRect().bottom;
+        if (episodeItem && scrollContainer) {
+          // Check if screen is desktop (large screen)
+          const isDesktop = window.innerWidth >= 1024;
 
-          if (detailBottom > containerBottom) {
-            detailElement.scrollIntoView({ behavior: 'smooth', block: 'end' });
+          if (isDesktop) {
+            // On desktop, scroll to show the episode item at the top
+            episodeItem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          } else {
+            // On mobile, keep the existing behavior
+            const detailElement = this.element.querySelector('.episode-detail-inline');
+            if (detailElement) {
+              const detailBottom = detailElement.getBoundingClientRect().bottom;
+              const containerBottom = scrollContainer.getBoundingClientRect().bottom;
+
+              if (detailBottom > containerBottom) {
+                detailElement.scrollIntoView({ behavior: 'smooth', block: 'end' });
+              }
+            }
           }
         }
       }, 150);

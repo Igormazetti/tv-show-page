@@ -16,6 +16,11 @@
   }
 }
 
+// Mobile only (max-width breakpoints)
+@mixin mobile-only {
+  @media (max-width: #{$breakpoint-md - 1px}) { @content; }
+}
+
 // Flexbox center
 @mixin flex-center {
   display: flex;

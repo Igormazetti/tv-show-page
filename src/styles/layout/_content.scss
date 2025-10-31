@@ -53,8 +53,19 @@
   overflow-x: hidden;
   margin-top: 6rem;
   padding-bottom: 6rem;
-  @include custom-scrollbar;
   scroll-behavior: smooth;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+
+  &::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+  }
+
+  @include mobile-only {
+    margin-top: -4rem;
+    padding-bottom: 24rem;
+    max-height: calc(100vh - 5rem);
+  }
 }
 
 .show-bottom {
@@ -83,6 +94,19 @@
   margin-top: $spacing-sm;
   overflow: hidden;
   height: 120px;
+
+  @include mobile-only {
+    height: 180px;
+    max-height: 180px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+
+    &::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
+    }
+  }
 
   @include respond-to('lg') {
     height: 110px;
